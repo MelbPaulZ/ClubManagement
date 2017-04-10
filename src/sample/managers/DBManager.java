@@ -77,6 +77,19 @@ public class DBManager {
         return false;
     }
 
+    public boolean searchMemberByEmail(String email){
+        String sql = "select * from member where email like " + SqlUtil.addQuotationForString(email);
+        try {
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (resultSet.next()){
+                System.out.println("name : " + resultSet.getString("memberName"));
+                System.out.println("email : " + resultSet.getString("email"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * for first time create user table
      */
