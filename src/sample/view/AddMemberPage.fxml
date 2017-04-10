@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<GridPane fx:controller="sample.controller.MainController"
+          xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="10" vgap="10">
+
+    <padding>
+        <Insets top="25" bottom="25" right="10" left="10"/>
+    </padding>
+
+    <Text text="Please Enter New Member Details: "
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="0"
+          GridPane.columnSpan="2"/>
+
+    <Label text="Member Name"
+           GridPane.rowIndex="1"
+           GridPane.columnIndex="0"/>
+
+    <TextField fx:id="membername"
+               GridPane.rowIndex="1"
+               GridPane.columnIndex="1"
+               minWidth="200"/>
+
+    <Label text="Gender"
+           GridPane.rowIndex="2"
+           GridPane.columnIndex="0"/>
+
+    <TextField fx:id="gender"
+               GridPane.rowIndex="2"
+               GridPane.columnIndex="1"/>
+
+    <Label text="Email"
+           GridPane.rowIndex="3"
+           GridPane.columnIndex="0"/>
+
+    <TextField fx:id="email"
+               GridPane.rowIndex="3"
+               GridPane.columnIndex="1"/>
+
+    <Label text="Phone"
+           GridPane.rowIndex="4"
+           GridPane.columnIndex="0"/>
+
+    <TextField fx:id="phone"
+               GridPane.rowIndex="4"
+               GridPane.columnIndex="1"/>
+
+    <AnchorPane GridPane.rowIndex="5"
+                GridPane.columnIndex="1">
+        <Button text="Cancel"
+                AnchorPane.leftAnchor="10" onAction="#toMainPage"/>
+
+        <Button text="Add"
+                AnchorPane.rightAnchor="10"/>
+    </AnchorPane>
+
+
+</GridPane>
