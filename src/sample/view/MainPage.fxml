@@ -25,29 +25,17 @@
 
     <Button GridPane.rowIndex="2"
             GridPane.columnIndex="1"
-            text="Search club member"
+            text="Manage members"
             minWidth="200"
             onAction="#toSearchMemberPage"/>
 
     <Button GridPane.rowIndex="3"
             GridPane.columnIndex="1"
-            text="View all members"
-            minWidth="200"
-            onAction="#toViewAllMembersPage"/>
-
-    <Button GridPane.rowIndex="4"
-            GridPane.columnIndex="1"
-            text="Delete member"
-            minWidth="200"
-            onAction="#toDeleteMemberPage"/>
-
-    <Button GridPane.rowIndex="5"
-            GridPane.columnIndex="1"
             text="Setting"
             minWidth="200"
             onAction="#toSettingPage"/>
 
-    <Button GridPane.rowIndex="6"
+    <Button GridPane.rowIndex="4"
             GridPane.columnIndex="1"
             text="Logout"
             minWidth="200"

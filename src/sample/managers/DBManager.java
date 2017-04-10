@@ -4,7 +4,10 @@ import sample.bean.Member;
 import sample.util.SqlUtil;
 import sample.bean.User;
 
+import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Paul on 9/4/17.
@@ -18,6 +21,7 @@ public class DBManager {
 
     private DBManager(){
         initDB();
+//        test();
 //        createUserTable();
 //        createMemberTable();
     }
@@ -69,7 +73,6 @@ public class DBManager {
                 member.getMemberId(),member.getMemberName(), member.getGender(),member.getEmail(), member.getPhone());
         try {
             statement.executeUpdate(insertSql);
-            test();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,17 +80,98 @@ public class DBManager {
         return false;
     }
 
-    public boolean searchMemberByEmail(String email){
-        String sql = "select * from member where email like " + SqlUtil.addQuotationForString(email);
+    // TODO: 11/4/17 change member name to unique identity 
+    public boolean delete(Member member){
+        String deleteSql = "delete from member where memberName = " + SqlUtil.addQuotationForString(member.getMemberName());
+        try {
+            statement.executeUpdate(deleteSql);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public List<Member> searchMemberByEmail(String email){
+        String sql = getSearchEmailSql(email);
+        return searchMember(sql);
+    }
+
+    public List<Member> searchMemberByPhone(String phone){
+        String sql = getSearchPhoneSql(phone);
+        return searchMember(sql);
+    }
+
+    public List<Member> searchMemberByName(String name){
+        String sql = getSearchNameSql(name);
+        return searchMember(sql);
+    }
+
+    private String getSearchEmailSql(String email){
+        return "select * from member where email like " + SqlUtil.addSearchMark(email);
+    }
+
+    private String getSearchPhoneSql(String phone){
+        return "select * from member where phone like " + SqlUtil.addSearchMark(phone);
+    }
+
+    private String getSearchNameSql(String name){
+        return "select * from member where memberName like " + SqlUtil.addSearchMark(name);
+    }
+
+    private List<Member> searchMember(String sql){
         try {
             ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet.next()){
-                System.out.println("name : " + resultSet.getString("memberName"));
-                System.out.println("email : " + resultSet.getString("email"));
+            return getMemberListFromResultSet(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private List<Member> getMemberListFromResultSet(ResultSet resultSet){
+        List<Member> memberList = new ArrayList<>();
+        try {
+            while (resultSet.next()){
+                Member member = getMemberFromResultSet(resultSet);
+                if (member!=null){
+                    memberList.add(member);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return memberList;
+    }
+
+    /**
+     * convert resultset to member object
+     * @param resultSet
+     * @return
+     */
+    private Member getMemberFromResultSet(ResultSet resultSet){
+        Member member = new Member();
+        try {
+            member.setMemberName(resultSet.getString("memberName"));
+            member.setMemberId(resultSet.getString("memberId"));
+            member.setPhone(resultSet.getString("phone"));
+            member.setEmail(resultSet.getString("email"));
+            member.setGender(resultSet.getString("gender"));
+            return member;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Member> getAllMembers(){
+        try {
+            ResultSet resultSet = statement.executeQuery("select * from member");
+            return getMemberListFromResultSet(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -134,6 +218,7 @@ public class DBManager {
                      System.out.println("email = " + rs.getString("email"));
                      System.out.println("phone = " + rs.getString("phone"));
                  }
+            System.out.println();
         } catch (SQLException e) {
             e.printStackTrace();
         }

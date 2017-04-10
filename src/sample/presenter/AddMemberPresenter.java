@@ -26,25 +26,25 @@ public class AddMemberPresenter extends BasePresenter {
         member.setMemberId("5");
 
         Alert alert;
-//        if (dbManager.insert(member)){
-//            alert = new Alert(Alert.AlertType.INFORMATION, "Success added new member",ButtonType.OK);
-//            alert.showAndWait();
-//
-//            if (alert.getResult() == ButtonType.YES) {
-//                controller.cleanAllInputs();
-//            }
-//        }else{
-//            alert = new Alert(Alert.AlertType.ERROR, "Unable to add new member", ButtonType.OK);
-//            alert.showAndWait();
-//            if (alert.getResult() == ButtonType.YES){
-//                controller.cleanAllInputs();
-//            }
-//        }
-        alert = new Alert(Alert.AlertType.ERROR, "Unable to add new member", ButtonType.OK);
-        alert.showAndWait();
-        if (alert.getResult() == ButtonType.YES){
-            controller.cleanAllInputs();
+        if (dbManager.insert(member)){
+            alert = new Alert(Alert.AlertType.INFORMATION, "Success added new member",ButtonType.OK);
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                controller.cleanAllInputs();
+            }
+        }else{
+            alert = new Alert(Alert.AlertType.ERROR, "Unable to add new member", ButtonType.OK);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES){
+                controller.cleanAllInputs();
+            }
         }
+//        alert = new Alert(Alert.AlertType.ERROR, "Unable to add new member", ButtonType.OK);
+//        alert.showAndWait();
+//        if (alert.getResult() == ButtonType.YES){
+//            controller.cleanAllInputs();
+//        }
 
 
     }

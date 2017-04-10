@@ -11,6 +11,17 @@ public class Member {
     private String email;
     private String phone;
 
+    public Member() {
+    }
+
+    public Member(String memberId, String memberName, String gender, String email, String phone) {
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.gender = gender;
+        this.email = email;
+        this.phone = phone;
+    }
+
     public String getMemberId() {
         return memberId;
     }

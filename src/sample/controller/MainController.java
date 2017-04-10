@@ -28,16 +28,9 @@ public class MainController extends BaseController{
     }
 
     @FXML public void toSearchMemberPage(){
-        switchToPage("view/SearchMemberPage.fxml");
+        switchToPage("view/ManageMemberPage.fxml");
     }
 
-    @FXML public void toViewAllMembersPage(){
-
-    }
-
-    @FXML public void toDeleteMemberPage(){
-
-    }
 
     @FXML public void toSettingPage(){
 

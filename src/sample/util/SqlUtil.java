@@ -7,4 +7,8 @@ public class SqlUtil {
     public static String addQuotationForString(String str){
         return "'"+ str + "'";
     }
+
+    public static String addSearchMark(String str){
+        return "'%" + str + "%'";
+    }
 }
