@@ -1,18 +1,10 @@
 package sample.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import sample.Main;
+import sample.bean.User;
+import sample.managers.UserManager;
 import sample.presenter.BasePresenter;
-import sample.presenter.MainPresenter;
-
-import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by Paul on 10/4/17.
@@ -23,15 +15,20 @@ public class MainController extends BaseController{
 
     }
 
-
     @FXML Text greeting;
+
+    @FXML private void initialize(){
+        User user = UserManager.getInstance().getUser();
+        String str = greeting.getText().concat(user.getUserName());
+        greeting.setText(str);
+    }
 
     @FXML public void toAddNewMemberPage(){
         switchToPage("view/AddMemberPage.fxml");
     }
 
     @FXML public void toSearchMemberPage(){
-
+        switchToPage("view/SearchMemberPage.fxml");
     }
 
     @FXML public void toViewAllMembersPage(){
@@ -50,9 +47,6 @@ public class MainController extends BaseController{
 
     }
 
-    @FXML public void toMainPage(){
-        switchToPage("view/MainPage.fxml");
-    }
 
 
     @Override

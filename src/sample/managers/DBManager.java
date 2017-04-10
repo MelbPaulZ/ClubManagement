@@ -1,5 +1,6 @@
 package sample.managers;
 
+import sample.bean.Member;
 import sample.util.SqlUtil;
 import sample.bean.User;
 
@@ -18,6 +19,7 @@ public class DBManager {
     private DBManager(){
         initDB();
 //        createUserTable();
+//        createMemberTable();
     }
 
     public static DBManager getInstance(){
@@ -60,9 +62,24 @@ public class DBManager {
             e.printStackTrace();
         }
         return null;
-
     }
 
+    public boolean insert(Member member){
+        String insertSql = String.format("insert into member values ('%s' , '%s', '%s', '%s', '%s')",
+                member.getMemberId(),member.getMemberName(), member.getGender(),member.getEmail(), member.getPhone());
+        try {
+            statement.executeUpdate(insertSql);
+            test();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * for first time create user table
+     */
     public void createUserTable(){
         try {
             Statement statement = connection.createStatement();
@@ -73,6 +90,40 @@ public class DBManager {
             e.printStackTrace();
         }
 
+    }
+
+
+    /**
+     * for first time create member table
+     */
+    public void createMemberTable(){
+        try {
+            statement.executeUpdate("drop table if exists member");
+            statement.executeUpdate("create table member (memberId varchar(20), memberName varchar(20), gender char(8), email varchar(50), phone varchar(10))");
+            statement.executeUpdate("insert into member values('1', 'paul', 'male', 'paul@gmail.com', '0402172555')");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void test(){
+        ResultSet rs = null;
+        try {
+            rs = statement.executeQuery("select * from member");
+            while(rs.next())
+                 {
+                     // read the result set
+                     System.out.println("name = " + rs.getString("memberName"));
+                     System.out.println("id = " + rs.getString("memberId"));
+                     System.out.println("email = " + rs.getString("email"));
+                     System.out.println("phone = " + rs.getString("phone"));
+                 }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

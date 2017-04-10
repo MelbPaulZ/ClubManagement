@@ -10,7 +10,7 @@ public class UserManager {
     private User user;
 
     private UserManager() {
-
+        mockData();
     }
 
     public static UserManager getInstance() {
@@ -20,5 +20,15 @@ public class UserManager {
         return instance;
     }
 
+    private void mockData(){
+        user = new User("admin", "admin", "0001");
+    }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
