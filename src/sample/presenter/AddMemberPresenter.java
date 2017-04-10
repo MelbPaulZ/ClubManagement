@@ -1,5 +1,7 @@
 package sample.presenter;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import sample.bean.Member;
 import sample.controller.AddMemberController;
 import sample.managers.DBManager;
@@ -22,8 +24,28 @@ public class AddMemberPresenter extends BasePresenter {
         member.setEmail(email);
         member.setPhone(phone);
         member.setMemberId("5");
-        boolean isSuccess = dbManager.insert(member);
-        System.out.println(isSuccess);
+
+        Alert alert;
+//        if (dbManager.insert(member)){
+//            alert = new Alert(Alert.AlertType.INFORMATION, "Success added new member",ButtonType.OK);
+//            alert.showAndWait();
+//
+//            if (alert.getResult() == ButtonType.YES) {
+//                controller.cleanAllInputs();
+//            }
+//        }else{
+//            alert = new Alert(Alert.AlertType.ERROR, "Unable to add new member", ButtonType.OK);
+//            alert.showAndWait();
+//            if (alert.getResult() == ButtonType.YES){
+//                controller.cleanAllInputs();
+//            }
+//        }
+        alert = new Alert(Alert.AlertType.ERROR, "Unable to add new member", ButtonType.OK);
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.YES){
+            controller.cleanAllInputs();
+        }
+
 
     }
 }

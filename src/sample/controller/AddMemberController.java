@@ -35,4 +35,11 @@ public class AddMemberController extends BaseController<AddMemberPresenter> {
     public AddMemberPresenter createPresenter() {
         return new AddMemberPresenter(this);
     }
+
+    public void cleanAllInputs(){
+        membername.clear();
+        gender.clear();
+        email.clear();
+        phone.clear();
+    }
 }
