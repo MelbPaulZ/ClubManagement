@@ -17,29 +17,15 @@ public class AddMemberPresenter extends BasePresenter {
         dbManager = DBManager.getInstance();
     }
 
-    public void addMember(String memberName, String gender, String email, String phone){
+    public boolean addMember(String memberName, String gender, String email, String phone){
         Member member = new Member();
         member.setMemberName(memberName);
         member.setGender(gender);
         member.setEmail(email);
         member.setPhone(phone);
-        member.setMemberId("5");
 
-        Alert alert;
-        if (dbManager.insert(member)){
-            alert = new Alert(Alert.AlertType.INFORMATION, "Success added new member",ButtonType.OK);
-            alert.showAndWait();
+        return dbManager.insert(member);
 
-            if (alert.getResult() == ButtonType.YES) {
-                controller.cleanAllInputs();
-            }
-        }else{
-            alert = new Alert(Alert.AlertType.ERROR, "Unable to add new member", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.YES){
-                controller.cleanAllInputs();
-            }
-        }
 //        alert = new Alert(Alert.AlertType.ERROR, "Unable to add new member", ButtonType.OK);
 //        alert.showAndWait();
 //        if (alert.getResult() == ButtonType.YES){

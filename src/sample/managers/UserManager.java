@@ -21,7 +21,7 @@ public class UserManager {
     }
 
     private void mockData(){
-        user = new User("admin", "admin", "0001");
+        user = new User("admin", "admin", "1");
     }
 
     public User getUser() {
@@ -30,5 +30,11 @@ public class UserManager {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void reloadUserInfoFromDB(){
+        DBManager dbManager = DBManager.getInstance();
+        user = dbManager.getUser(user.getUserId());
+
     }
 }

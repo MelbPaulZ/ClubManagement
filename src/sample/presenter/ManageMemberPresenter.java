@@ -36,12 +36,8 @@ public class ManageMemberPresenter extends BasePresenter {
         }
     }
 
-    public void deleteMember(Member member){
-        if (dbManager.delete(member)){
-
-        }else{
-
-        }
+    public boolean deleteMember(Member member){
+        return dbManager.delete(member);
     }
 
     public List<Member> getAllMembers(){

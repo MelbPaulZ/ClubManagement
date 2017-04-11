@@ -25,6 +25,8 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="1d0c5b3e-0a88-4d04-8b5c-e426fa86edbd">
+        <schema name="mysql" object-types="column, constraint, function, index, procedure, table, dataset trigger, view" />
+        <schema name="performance_schema" object-types="column, constraint, function, index, procedure, table, dataset trigger, view" />
         <schema name="test" object-types="column, constraint, function, index, procedure, table, dataset trigger, view" />
       </connection>
     </loaded-nodes>
@@ -40,6 +42,7 @@
         <condition column="password" operator="=" value="" active="true" />
       </filter>
     </filter-list>
+    <filter-list connection-id="1d0c5b3e-0a88-4d04-8b5c-e426fa86edbd" dataset="test.member" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

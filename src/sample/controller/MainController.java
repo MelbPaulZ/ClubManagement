@@ -27,12 +27,16 @@ public class MainController extends BaseController{
         switchToPage("view/AddMemberPage.fxml");
     }
 
-    @FXML public void toSearchMemberPage(){
+    @FXML public void toManageMemberPage(){
         switchToPage("view/ManageMemberPage.fxml");
     }
 
 
-    @FXML public void toSettingPage(){
+    @FXML public void toChangePasswordPage(){
+        switchToPage("view/ChangePasswordPage.fxml");
+    }
+
+    @FXML public void toEditProfilePage(){
 
     }
 

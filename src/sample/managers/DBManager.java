@@ -19,8 +19,10 @@ public class DBManager {
     private Statement statement;
 
 
+
     private DBManager(){
         initDB();
+//        createMemberTable();
 //        test();
 //        createUserTable();
 //        createMemberTable();
@@ -69,8 +71,8 @@ public class DBManager {
     }
 
     public boolean insert(Member member){
-        String insertSql = String.format("insert into member values ('%s' , '%s', '%s', '%s', '%s')",
-                member.getMemberId(),member.getMemberName(), member.getGender(),member.getEmail(), member.getPhone());
+        String insertSql = String.format("insert into member (memberName, gender, email, phone) values ('%s' , '%s', '%s', '%s')",
+                member.getMemberName(), member.getGender(),member.getEmail(), member.getPhone());
         try {
             statement.executeUpdate(insertSql);
             return true;
@@ -80,9 +82,9 @@ public class DBManager {
         return false;
     }
 
-    // TODO: 11/4/17 change member name to unique identity 
+    // TODO: 11/4/17 change member name to unique identity
     public boolean delete(Member member){
-        String deleteSql = "delete from member where memberName = " + SqlUtil.addQuotationForString(member.getMemberName());
+        String deleteSql = "delete from member where memberId = " + SqlUtil.addQuotationForString(member.getMemberId());
         try {
             statement.executeUpdate(deleteSql);
             return true;
@@ -174,6 +176,48 @@ public class DBManager {
         return null;
     }
 
+
+    public boolean changePassword(String newPassword, String userId){
+        String sql = "update User Set password = "
+                + SqlUtil.addQuotationForString(newPassword)
+                + " where userId = "
+                + SqlUtil.addQuotationForString(userId);
+        try {
+            statement.executeUpdate(sql);
+            testChangePassword();
+            return  true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public User getUser(String userId){
+        String sql = "Select * from user where userId = " + SqlUtil.addQuotationForString(userId);
+        try {
+            ResultSet resultSet = statement.executeQuery(sql);
+            return getUserFromResultSet(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private User getUserFromResultSet(ResultSet resultSet){
+        try {
+            if (resultSet.next()){
+                User user = new User();
+                user.setPassword(resultSet.getString("password"));
+                user.setUserId(resultSet.getString("userId"));
+                user.setUserName(resultSet.getString("userName"));
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * for first time create user table
      */
@@ -196,8 +240,13 @@ public class DBManager {
     public void createMemberTable(){
         try {
             statement.executeUpdate("drop table if exists member");
-            statement.executeUpdate("create table member (memberId varchar(20), memberName varchar(20), gender char(8), email varchar(50), phone varchar(10))");
-            statement.executeUpdate("insert into member values('1', 'paul', 'male', 'paul@gmail.com', '0402172555')");
+//            statement.executeUpdate("create table member (memberId varchar(20), memberName varchar(20), gender char(8), email varchar(50), phone varchar(10))");
+            statement.executeUpdate("create table member (memberId int auto_increment, memberName varchar(20), gender char(8), email varchar(50), phone varchar(10), primary key(memberId))");
+
+            statement.executeUpdate("insert into member( memberName, gender, email, phone) values( 'paul', 'male', 'paul@gmail.com', '0402172555')");
+            statement.executeUpdate("insert into member( memberName, gender, email, phone) values( 'paul', 'male', 'paul@gmail.com', '0402172555')");
+            statement.executeUpdate("insert into member( memberName, gender, email, phone) values( 'paul', 'male', 'paul@gmail.com', '0402172555')");
+            test();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -219,6 +268,19 @@ public class DBManager {
                      System.out.println("phone = " + rs.getString("phone"));
                  }
             System.out.println();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void testChangePassword(){
+        String sql = "Select * from user";
+        try {
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()){
+                System.out.println(resultSet.getString("userId"));
+                System.out.println(resultSet.getString("password"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

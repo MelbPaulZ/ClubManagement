@@ -1,6 +1,8 @@
 package sample.controller;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import sample.Main;
@@ -39,5 +41,14 @@ public abstract class BaseController<P extends BasePresenter> {
         }
         stage.getScene().setRoot(root);
         stage.show();
+    }
+
+    protected void showAlert(String msg){
+        showAlert(Alert.AlertType.WARNING, msg);
+    }
+
+    protected void showAlert(Alert.AlertType alertType, String msg){
+        Alert alert = new Alert(alertType, msg, ButtonType.OK);
+        alert.showAndWait();
     }
 }
