@@ -2,35 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sample/controller/ChangeProfileController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sample/presenter/ChangeProfilePresenter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sample/view/ChangeProfilePage.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/bean/Member.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/bean/Member.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/controller/LoginController.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/controller/LoginController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/controller/MainController.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/controller/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/managers/DBManager.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/managers/DBManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/managers/UserManager.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/managers/UserManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/presenter/AddMemberPresenter.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/presenter/AddMemberPresenter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/presenter/LoginPresenter.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/presenter/LoginPresenter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/presenter/ManageMemberPresenter.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/presenter/ManageMemberPresenter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/controller/ChangePasswordController.class" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/controller/ChangePasswordController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/view/LoginPage.fxml" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/view/LoginPage.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ClubManagement/sample/view/MainPage.fxml" afterPath="$PROJECT_DIR$/out/production/ClubManagement/sample/view/MainPage.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/bean/Member.java" afterPath="$PROJECT_DIR$/src/sample/bean/Member.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/controller/ChangePasswordController.java" afterPath="$PROJECT_DIR$/src/sample/controller/ChangePasswordController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/sample/controller/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/controller/MainController.java" afterPath="$PROJECT_DIR$/src/sample/controller/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/managers/DBManager.java" afterPath="$PROJECT_DIR$/src/sample/managers/DBManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/managers/UserManager.java" afterPath="$PROJECT_DIR$/src/sample/managers/UserManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/presenter/AddMemberPresenter.java" afterPath="$PROJECT_DIR$/src/sample/presenter/AddMemberPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/presenter/LoginPresenter.java" afterPath="$PROJECT_DIR$/src/sample/presenter/LoginPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/presenter/ManageMemberPresenter.java" afterPath="$PROJECT_DIR$/src/sample/presenter/ManageMemberPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/view/ChangePasswordPage.fxml" afterPath="$PROJECT_DIR$/src/sample/view/ChangePasswordPage.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/view/LoginPage.fxml" afterPath="$PROJECT_DIR$/src/sample/view/LoginPage.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/view/MainPage.fxml" afterPath="$PROJECT_DIR$/src/sample/view/MainPage.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -191,11 +165,9 @@
       <file leaf-file-name="ChangePasswordController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/controller/ChangePasswordController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1402,11 +1374,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/controller/ChangePasswordController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
