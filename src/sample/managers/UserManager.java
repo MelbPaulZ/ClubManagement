@@ -10,7 +10,8 @@ public class UserManager {
     private User user;
 
     private UserManager() {
-        mockData();
+//        mockData();
+
     }
 
     public static UserManager getInstance() {
@@ -35,6 +36,10 @@ public class UserManager {
     public void reloadUserInfoFromDB(){
         DBManager dbManager = DBManager.getInstance();
         user = dbManager.getUser(user.getUserId());
+    }
 
+    public void clear(){
+        user = null;
+        instance = null;
     }
 }

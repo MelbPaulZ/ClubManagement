@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.controller.LoginController;
 import sample.controller.MainController;
+import sample.model.Login;
 
 
 public class Main extends Application {
@@ -13,23 +15,23 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        Parent root = fxmlLoader.load(getClass().getResource("LoginPage.fxml").openStream());
-//        LoginController loginController = fxmlLoader.getController();
-//        loginController.setStage(primaryStage);
-//        Login login = new Login(loginController);
-//
-//        primaryStage.setTitle("Club Management System");
-//        primaryStage.setScene(new Scene(root, 500, 500));
-//        login.start();
-
-
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root1 = fxmlLoader.load(getClass().getResource("view/MainPage.fxml").openStream());
-        MainController mainController = fxmlLoader.getController();
-        mainController.setStage(primaryStage);
-        primaryStage.setScene(new Scene(root1, 500, 500));
-        primaryStage.show();
+        Parent root = fxmlLoader.load(getClass().getResource("view/LoginPage.fxml").openStream());
+        LoginController loginController = fxmlLoader.getController();
+        loginController.setStage(primaryStage);
+        Login login = new Login(loginController);
+
+        primaryStage.setTitle("Club Management System");
+        primaryStage.setScene(new Scene(root, 500, 500));
+        login.start();
+
+
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        Parent root1 = fxmlLoader.load(getClass().getResource("view/MainPage.fxml").openStream());
+//        MainController mainController = fxmlLoader.getController();
+//        mainController.setStage(primaryStage);
+//        primaryStage.setScene(new Scene(root1, 500, 500));
+//        primaryStage.show();
 
 
 //        FXMLLoader fxmlLoader = new FXMLLoader();

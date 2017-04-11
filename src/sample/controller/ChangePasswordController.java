@@ -3,6 +3,7 @@ package sample.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.managers.UserManager;
 import sample.presenter.ChangePasswordPresenter;
@@ -13,11 +14,11 @@ import sample.presenter.ChangePasswordPresenter;
 public class ChangePasswordController extends BaseController<ChangePasswordPresenter> {
 
     @FXML
-    TextField oldPassword;
+    PasswordField oldPassword;
 
-    @FXML TextField newPassword;
+    @FXML PasswordField newPassword;
 
-    @FXML TextField confirmPassword;
+    @FXML PasswordField confirmPassword;
 
     private ChangePasswordPresenter presenter;
 

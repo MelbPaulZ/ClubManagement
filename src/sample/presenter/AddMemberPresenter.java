@@ -5,6 +5,7 @@ import javafx.scene.control.ButtonType;
 import sample.bean.Member;
 import sample.controller.AddMemberController;
 import sample.managers.DBManager;
+import sample.managers.UserManager;
 
 /**
  * Created by Paul on 10/4/17.
@@ -24,7 +25,8 @@ public class AddMemberPresenter extends BasePresenter {
         member.setEmail(email);
         member.setPhone(phone);
 
-        return dbManager.insert(member);
+        String userId = UserManager.getInstance().getUser().getUserId();
+        return dbManager.insert(member, userId);
 
 //        alert = new Alert(Alert.AlertType.ERROR, "Unable to add new member", ButtonType.OK);
 //        alert.showAndWait();

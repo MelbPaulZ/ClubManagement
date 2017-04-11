@@ -3,6 +3,7 @@ package sample.presenter;
 import sample.bean.Member;
 import sample.controller.ManageMemberController;
 import sample.managers.DBManager;
+import sample.managers.UserManager;
 
 import java.util.List;
 
@@ -20,15 +21,16 @@ public class ManageMemberPresenter extends BasePresenter {
 
     public void searchMember(String str, int searchField){
         List<Member> memberList = null;
+        String userId = UserManager.getInstance().getUser().getUserId();
         switch (searchField){
             case ManageMemberController.SEARCH_NAME:
-                memberList = dbManager.searchMemberByName(str);
+                memberList = dbManager.searchMemberByName(str, userId);
                 break;
             case ManageMemberController.SEARCH_EMAIL:
-                memberList = dbManager.searchMemberByEmail(str);
+                memberList = dbManager.searchMemberByEmail(str, userId);
                 break;
             case ManageMemberController.SEARCH_PHONE:
-                memberList = dbManager.searchMemberByPhone(str);
+                memberList = dbManager.searchMemberByPhone(str, userId);
                 break;
         }
         if (memberList!=null){
@@ -37,10 +39,12 @@ public class ManageMemberPresenter extends BasePresenter {
     }
 
     public boolean deleteMember(Member member){
-        return dbManager.delete(member);
+        String userId = UserManager.getInstance().getUser().getUserId();
+        return dbManager.delete(member,userId);
     }
 
     public List<Member> getAllMembers(){
-        return dbManager.getAllMembers();
+        String userId = UserManager.getInstance().getUser().getUserId();
+        return dbManager.getAllMembers(userId);
     }
 }

@@ -70,11 +70,29 @@ public class DBManager {
         return null;
     }
 
-    public boolean insert(Member member){
-        String insertSql = String.format("insert into member (memberName, gender, email, phone) values ('%s' , '%s', '%s', '%s')",
-                member.getMemberName(), member.getGender(),member.getEmail(), member.getPhone());
+    public boolean signUp(String userName, String password){
+        String signUpSql = String.format("insert into user (userName, password) values('%s','%s')", userName, password);
+        try {
+            statement.executeUpdate(signUpSql);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void clear(){
+        instance = null;
+        connection = null;
+        statement = null;
+    }
+
+    public boolean insert(Member member, String userId){
+        String insertSql = String.format("insert into member (memberName, gender, email, phone, userId) values ('%s' , '%s', '%s', '%s', '%s')",
+                member.getMemberName(), member.getGender(),member.getEmail(), member.getPhone(), userId);
         try {
             statement.executeUpdate(insertSql);
+//            test();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,8 +101,11 @@ public class DBManager {
     }
 
     // TODO: 11/4/17 change member name to unique identity
-    public boolean delete(Member member){
-        String deleteSql = "delete from member where memberId = " + SqlUtil.addQuotationForString(member.getMemberId());
+    public boolean delete(Member member, String userId){
+        String deleteSql = "delete from member where memberId = "
+                + SqlUtil.addQuotationForString(member.getMemberId())
+                + "and userId = "
+                + SqlUtil.addQuotationForString(userId);
         try {
             statement.executeUpdate(deleteSql);
             return true;
@@ -94,31 +115,34 @@ public class DBManager {
         return false;
     }
 
-    public List<Member> searchMemberByEmail(String email){
-        String sql = getSearchEmailSql(email);
+    public List<Member> searchMemberByEmail(String email, String userId){
+        String sql = getSearchEmailSql(email, userId);
         return searchMember(sql);
     }
 
-    public List<Member> searchMemberByPhone(String phone){
-        String sql = getSearchPhoneSql(phone);
+    public List<Member> searchMemberByPhone(String phone, String userId){
+        String sql = getSearchPhoneSql(phone, userId);
         return searchMember(sql);
     }
 
-    public List<Member> searchMemberByName(String name){
-        String sql = getSearchNameSql(name);
+    public List<Member> searchMemberByName(String name, String userId){
+        String sql = getSearchNameSql(name, userId);
         return searchMember(sql);
     }
 
-    private String getSearchEmailSql(String email){
-        return "select * from member where email like " + SqlUtil.addSearchMark(email);
+    private String getSearchEmailSql(String email, String userId){
+        return "select * from member where email like " + SqlUtil.addSearchMark(email)
+                + "and userId = " + SqlUtil.addQuotationForString(userId);
     }
 
-    private String getSearchPhoneSql(String phone){
-        return "select * from member where phone like " + SqlUtil.addSearchMark(phone);
+    private String getSearchPhoneSql(String phone, String userId){
+        return "select * from member where phone like " + SqlUtil.addSearchMark(phone)
+                + "and userId = " + SqlUtil.addQuotationForString(userId);
     }
 
-    private String getSearchNameSql(String name){
-        return "select * from member where memberName like " + SqlUtil.addSearchMark(name);
+    private String getSearchNameSql(String name, String userId){
+        return "select * from member where memberName like " + SqlUtil.addSearchMark(name)
+                + "and userId = " + SqlUtil.addQuotationForString(userId);
     }
 
     private List<Member> searchMember(String sql){
@@ -159,6 +183,7 @@ public class DBManager {
             member.setPhone(resultSet.getString("phone"));
             member.setEmail(resultSet.getString("email"));
             member.setGender(resultSet.getString("gender"));
+            member.setUserId(resultSet.getInt("userId"));
             return member;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -166,9 +191,9 @@ public class DBManager {
         return null;
     }
 
-    public List<Member> getAllMembers(){
+    public List<Member> getAllMembers(String userId){
         try {
-            ResultSet resultSet = statement.executeQuery("select * from member");
+            ResultSet resultSet = statement.executeQuery("select * from member where userId = " + SqlUtil.addQuotationForString(userId));
             return getMemberListFromResultSet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -184,8 +209,22 @@ public class DBManager {
                 + SqlUtil.addQuotationForString(userId);
         try {
             statement.executeUpdate(sql);
-            testChangePassword();
+//            testChangePassword();
             return  true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean changeUserName(String newUserName, String userId){
+        String sql = "update User Set userName = "
+                + SqlUtil.addQuotationForString(newUserName)
+                + "where userId = "
+                + SqlUtil.addQuotationForString(userId);
+        try {
+            statement.executeUpdate(sql);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -218,6 +257,7 @@ public class DBManager {
         return null;
     }
 
+
     /**
      * for first time create user table
      */
@@ -225,8 +265,7 @@ public class DBManager {
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate("drop table if exists user");
-            statement.executeUpdate("create table user (userId varchar(20), userName varchar (20), password varchar(20))");
-            statement.executeUpdate("insert into user Values('1', 'admin', 'admin')");
+            statement.executeUpdate("create table user (userId int auto_increment, userName varchar (20), password varchar(20), primary key(userId))");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -241,12 +280,12 @@ public class DBManager {
         try {
             statement.executeUpdate("drop table if exists member");
 //            statement.executeUpdate("create table member (memberId varchar(20), memberName varchar(20), gender char(8), email varchar(50), phone varchar(10))");
-            statement.executeUpdate("create table member (memberId int auto_increment, memberName varchar(20), gender char(8), email varchar(50), phone varchar(10), primary key(memberId))");
+            statement.executeUpdate("create table member (memberId int auto_increment, memberName varchar(20), gender char(8), email varchar(50), phone varchar(10), userId int, primary key(memberId))");
 
-            statement.executeUpdate("insert into member( memberName, gender, email, phone) values( 'paul', 'male', 'paul@gmail.com', '0402172555')");
-            statement.executeUpdate("insert into member( memberName, gender, email, phone) values( 'paul', 'male', 'paul@gmail.com', '0402172555')");
-            statement.executeUpdate("insert into member( memberName, gender, email, phone) values( 'paul', 'male', 'paul@gmail.com', '0402172555')");
-            test();
+//            statement.executeUpdate("insert into member( memberName, gender, email, phone) values( 'paul', 'male', 'paul@gmail.com', '0402172555')");
+//            statement.executeUpdate("insert into member( memberName, gender, email, phone) values( 'paul', 'male', 'paul@gmail.com', '0402172555')");
+//            statement.executeUpdate("insert into member( memberName, gender, email, phone) values( 'paul', 'male', 'paul@gmail.com', '0402172555')");
+//            test();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -266,6 +305,7 @@ public class DBManager {
                      System.out.println("id = " + rs.getString("memberId"));
                      System.out.println("email = " + rs.getString("email"));
                      System.out.println("phone = " + rs.getString("phone"));
+                     System.out.println("userId = " + rs.getString("userId"));
                  }
             System.out.println();
         } catch (SQLException e) {

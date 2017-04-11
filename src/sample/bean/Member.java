@@ -10,6 +10,7 @@ public class Member {
     private String gender;
     private String email;
     private String phone;
+    private int userId;
 
     public Member() {
     }
@@ -60,5 +61,13 @@ public class Member {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

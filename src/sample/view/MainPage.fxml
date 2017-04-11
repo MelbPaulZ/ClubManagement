@@ -39,6 +39,7 @@
             GridPane.columnIndex="1"
             text="Edit Profile"
             minWidth="200"
+            onAction="#toEditProfilePage"
     />
 
     <Button GridPane.rowIndex="5"

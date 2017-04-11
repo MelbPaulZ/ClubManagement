@@ -39,8 +39,13 @@
           alignment="bottom_right"
           GridPane.columnIndex="1"
           GridPane.rowIndex="4">
-        <Button text="Sign In"
+
+        <Button text="SignUp"
+                onAction="#onClickSignup"/>
+
+        <Button text="Login"
                 onAction="#onClickSignin"/>
+
     </HBox>
 
 </GridPane>

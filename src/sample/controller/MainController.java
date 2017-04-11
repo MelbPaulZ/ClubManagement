@@ -3,6 +3,7 @@ package sample.controller;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import sample.bean.User;
+import sample.managers.DBManager;
 import sample.managers.UserManager;
 import sample.presenter.BasePresenter;
 
@@ -19,7 +20,7 @@ public class MainController extends BaseController{
 
     @FXML private void initialize(){
         User user = UserManager.getInstance().getUser();
-        String str = greeting.getText().concat(user.getUserName());
+        String str = "Welcome, " + user.getUserName();
         greeting.setText(str);
     }
 
@@ -37,11 +38,13 @@ public class MainController extends BaseController{
     }
 
     @FXML public void toEditProfilePage(){
-
+        switchToPage("view/ChangeProfilePage.fxml");
     }
 
     @FXML public void logout(){
-
+        switchToPage("view/LoginPage.fxml");
+        DBManager.getInstance().clear();
+        UserManager.getInstance().clear();
     }
 
 
